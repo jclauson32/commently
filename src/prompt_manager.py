@@ -3,7 +3,7 @@ from pathlib import Path
 
 import yaml
 
-from contracts import PromptConfig
+from src.contract import PromptConfig
 
 class PromptManager:
     def __init__(self, prompts_dir: str = "prompts"):

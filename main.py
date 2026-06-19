@@ -1,7 +1,7 @@
 import os
 
-from open_ai import OpenAIRatingClient
-from scrape_creators import ScrapeCreatorClient
+from src.open_ai import OpenAIRatingClient
+from src.scrape_creators import ScrapeCreatorClient
 
 POST_URL = "https://www.instagram.com/yungstarbeam/p/DY2vQkqliwv/"
 
