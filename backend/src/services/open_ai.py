@@ -4,9 +4,9 @@ from typing import List
 
 from openai import OpenAI
 
-from src.contract import BatchRatingResponse, PromptConfig, RatingInput, RatingOutput
-from src.prompt_manager import PromptManager
-from src.scrape_creators import CommentsResponse
+from src.models.contract import BatchRatingResponse, PromptConfig, RatingInput, RatingOutput
+from src.services.prompt_manager import PromptManager
+from src.services.scrape_creators import CommentsResponse
 
 
 class OpenAIRatingClient:

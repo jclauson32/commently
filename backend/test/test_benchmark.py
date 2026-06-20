@@ -2,9 +2,9 @@ import json
 import os
 import pytest
 
-from src.open_ai import OpenAIRatingClient
-from src.scrape_creators import CommentsResponse, Comment
-from src.contract import BatchRatingResponse, CommentRating
+from src.services.open_ai import OpenAIRatingClient
+from src.services.scrape_creators import CommentsResponse, Comment
+from src.models.contract import BatchRatingResponse, CommentRating
 from pathlib import Path
 
 
