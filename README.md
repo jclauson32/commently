@@ -68,3 +68,5 @@ The analysis provided by this tool is for informational purposes only. Commently
 
 ---
 *Built to serve the digital community.*
+
+Copyright (c) 2026 Joseph Clauson. All rights reserved.
