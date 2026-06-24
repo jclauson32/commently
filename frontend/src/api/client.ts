@@ -29,12 +29,12 @@ export async function rateComments(payload: RateCommentsRequest): Promise<RateCo
     }
 
     return await response.json();
-    
+
   } catch (error) {
     // Catch network errors (e.g., backend is offline, CORS issues) and rethrow cleanly for the UI
     console.error('[API Error] rateComments failed:', error);
-    throw error instanceof Error 
-      ? error 
+    throw error instanceof Error
+      ? error
       : new Error('An unexpected network error occurred while analyzing comments.');
   }
 }

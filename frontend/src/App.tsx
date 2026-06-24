@@ -32,7 +32,7 @@ export default function App() {
           Helpful tools to measure the sentiment and authenticity of discussions on your public posts.
         </p>
       </header>
-      
+
       <form onSubmit={handleSubmit} style={{ marginBottom: '4rem' }}>
         <input
           type="url"

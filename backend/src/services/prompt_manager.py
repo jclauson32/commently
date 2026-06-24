@@ -6,8 +6,11 @@ import yaml
 from src.models.contract import PromptConfig
 
 CURRENT_DIR = Path(__file__).resolve().parent.parent.parent / "prompts"
+
+
 class PromptManager:
-    """ Class for interacting with prompts as versioned yaml"""
+    """Class for interacting with prompts as versioned yaml"""
+
     def __init__(self, prompts_dir: str = CURRENT_DIR):
         """
         Initializes the Prompt manager Class.
@@ -30,7 +33,9 @@ class PromptManager:
 
         return PromptConfig.model_validate(raw_config)
 
-    def get_openai_messages(self, prompt_config: PromptConfig, user_input: str) -> list[dict[str, str]]:
+    def get_openai_messages(
+        self, prompt_config: PromptConfig, user_input: str
+    ) -> list[dict[str, str]]:
         """Formats the system prompt, few-shot examples, and user input for OpenAI."""
         messages = [{"role": "system", "content": prompt_config.system_prompt}]
 

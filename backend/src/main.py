@@ -15,7 +15,7 @@ app = FastAPI(title="Comment Rater API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],# Vite port
+    allow_origins=["http://localhost:5173"],  # Vite port
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -26,14 +26,12 @@ try:
         provider="instagram",
         api_key=os.environ["SCRAPE_CREATORS_API_KEY"],
     )
-    app.state.ai_client = OpenAIRatingClient(
-        api_key=os.environ["OPENAI_API_KEY"]
-    )
+    app.state.ai_client = OpenAIRatingClient(api_key=os.environ["OPENAI_API_KEY"])
 except KeyError as e:
     raise RuntimeError(f"Missing required environment variable: {e}")
 
-#region routers
+# region routers
 
 app.include_router(comments_router)
 
-#endregion
+# endregion
