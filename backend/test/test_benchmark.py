@@ -23,7 +23,7 @@ def test_llm_batch_benchmark():
     expected_lookup = {
         item["id"]: {
             "positivity": item["expected_positivity"],
-            "bot_score": item["expected_bot_score"],
+            "authenticity_score": item["expected_authenticity_score"],
         }
         for item in dataset["benchmarks"]
     }
@@ -43,7 +43,7 @@ def test_llm_batch_benchmark():
     ), "LLM did not return ratings for all comments!"
 
     positivity_error_margin = 0.0
-    bot_error_margin = 0.0
+    authenticity_error_margin = 0.0
     total_cases = len(batch_result.ratings)
 
     for rating in batch_result.ratings:
@@ -51,14 +51,14 @@ def test_llm_batch_benchmark():
 
         # Pydantic guarantees these are integers as defined in your Field constraints
         positivity_error_margin += abs(rating.positivity_score - expected["positivity"])
-        bot_error_margin += abs(rating.bot_score - expected["bot_score"])
+        authenticity_error_margin += abs(rating.authenticity_score - expected["authenticity_score"])
 
     # variance metrics
     avg_positivity_error = positivity_error_margin / total_cases
-    avg_bot_error = bot_error_margin / total_cases
+    avg_authenticity_error = authenticity_error_margin / total_cases
 
     print(
-        f" avg positivity error: {avg_positivity_error}, avg bot error: {avg_bot_error}"
+        f" avg positivity error: {avg_positivity_error}, avg authenticity error: {avg_authenticity_error}"
     )
     # write metrics to GitHub Actions Summary UI
     if "GITHUB_STEP_SUMMARY" in os.environ:
@@ -72,11 +72,11 @@ def test_llm_batch_benchmark():
                 f"- **Avg Positivity Variance:** ±{avg_positivity_error:.1f} points\n"
             )
             summary_file.write(
-                f"- **Avg Bot Scoring Variance:** ±{avg_bot_error:.1f} points\n"
+                f"- **Avg authenticity Scoring Variance:** ±{avg_authenticity_error:.1f} points\n"
             )
 
     # Pipeline Gates
     assert (
         avg_positivity_error < 3.0
     ), f"Regression: Positivity grading off by ±{avg_positivity_error:.1f}"
-    assert avg_bot_error < 3.0, f"Regression: Bot scoring off by ±{avg_bot_error:.1f}"
+    assert avg_authenticity_error < 3.0, f"Regression: authenticity scoring off by ±{avg_authenticity_error:.1f}"

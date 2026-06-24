@@ -32,10 +32,37 @@ class ScrapeCreatorClient:
     BASE_URL = "https://api.scrapecreators.com/v2/"
 
     def __init__(self, provider: str, api_key: str):
+        """
+        Initializes the ScrapeCreatorClient.
+
+        Args:
+            provider (str): The social media platform provider (e.g., 'instagram').
+            api_key (str): The authentication key for the Scrape Creators service.
+        """
         self.provider = provider
         self.api_key = api_key
     
     def get_instagram_comments(self, post_url: str, cursor: str = None) -> CommentsResponse:
+        """
+        Retrieves a collection of comments from a specific Instagram post.
+
+        This method sends a GET request to the Scrape Creators API. It handles 
+        pagination via the 'cursor' parameter if more comments are available.
+
+        Args:
+            post_url (str): The full URL of the Instagram post to scrape.
+            cursor (str, optional): The pagination token for fetching subsequent 
+                pages of comments. Defaults to None.
+
+        Returns:
+            CommentsResponse: A structured response containing the post URL, 
+                success status, and a list of Comment objects.
+
+        Raises:
+            ValueError: If the provided post_url is empty or invalid.
+            requests.exceptions.RequestException: If the API request fails 
+                due to network issues or API errors.
+        """
         if not post_url:
             raise ValueError("No post url provided. Please provide one.")
         data = {"url": post_url}
@@ -51,7 +78,21 @@ class ScrapeCreatorClient:
 
 
     def _scrape_creators_request(self, endpoint: str, data: dict, method: str = "POST"):
-        
+        """
+        Executes a secure HTTP request to the Scrape Creators API.
+
+        Args:
+            endpoint (str): The API endpoint path (e.g., 'instagram/post/comments').
+            data (dict): The payload or query parameters to be sent with the request.
+            method (str): The HTTP method to use (default: 'POST').
+
+        Returns:
+            dict: The JSON-parsed response from the API.
+
+        Raises:
+            requests.exceptions.RequestException: If the network request fails or 
+                returns a non-200 status code.
+        """
         url = f"{self.BASE_URL.rstrip('/')}/{endpoint.lstrip('/')}"
         headers = {
         "x-api-key": self.api_key,

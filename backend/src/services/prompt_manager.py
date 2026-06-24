@@ -7,7 +7,14 @@ from src.models.contract import PromptConfig
 
 CURRENT_DIR = Path(__file__).resolve().parent.parent.parent / "prompts"
 class PromptManager:
+    """ Class for interacting with prompts as versioned yaml"""
     def __init__(self, prompts_dir: str = CURRENT_DIR):
+        """
+        Initializes the Prompt manager Class.
+
+        Args:
+            prompts_dir: (str): hardcoded 'prompts' directory containing versioned prompts
+        """
         self.prompts_dir = Path(prompts_dir)
 
     def load_prompt_config(self, prompt_name: str, version: str) -> PromptConfig:

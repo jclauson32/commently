@@ -1,8 +1,7 @@
 import json
 import os
 from typing import List
-
-from openai import OpenAI
+from anthropic import Anthropic
 
 from src.models.contract import (
     BatchRatingResponse,
@@ -14,8 +13,8 @@ from src.services.prompt_manager import PromptManager
 from src.services.scrape_creators import CommentsResponse
 
 
-class OpenAIRatingClient:
-    """Client for batch-processing Instagram video comment ratings via OpenAI."""
+class AnthropicRatingClient:
+    """Client for batch-processing Instagram video comment ratings via Anthropic."""
 
     PROMPT_NAME = "instagram_comment_rater"
     PROMPT_VERSION = "v1"
@@ -23,31 +22,51 @@ class OpenAIRatingClient:
     def __init__(
         self, api_key: str | None = None, prompt_config: PromptConfig | None = None
     ):
-        """Initialize OpenAI Rating Client"""
-        self.client = OpenAI(api_key=api_key or os.environ.get("OPENAI_API_KEY"))
+        """Anthropic API Client Initialization"""
+        self.client = Anthropic(api_key=api_key or os.environ.get("ANTHROPIC_API_KEY"))
         self.prompt_manager = PromptManager()
         self.prompt_config = prompt_config or self.prompt_manager.load_prompt_config(
             self.PROMPT_NAME, self.PROMPT_VERSION
         )
-        self.model = "gpt-4o-mini"
+        self.model = "claude-3-5-sonnet-20240620"
+
+    def _get_structured_response(self, messages: List[dict], response_model: type):
+        """Helper to map OpenAI-style messages to Anthropic's format."""
+        # Convert Pydantic model to JSON Schema for tool use
+        schema = response_model.model_json_schema()
+
+        # Anthropic requires system messages separated from user/assistant messages
+        system_msg = next((m["content"] for m in messages if m["role"] == "system"), "")
+        user_msgs = [m for m in messages if m["role"] != "system"]
+
+        response = self.client.messages.create(
+            model=self.model,
+            system=system_msg,
+            messages=user_msgs,
+            max_tokens=4096,
+            tools=[
+                {
+                    "name": "structured_output",
+                    "description": "Output data according to schema",
+                    "input_schema": schema,
+                }
+            ],
+            tool_choice={"type": "tool", "name": "structured_output"},
+        )
+
+        # Extract tool output
+        tool_use = next(block for block in response.content if block.type == "tool_use")
+        return response_model.model_validate(tool_use.input)
 
     def rate_comment(self, comment_text: str) -> RatingOutput:
         """Rate a single comment using the versioned prompt contract."""
-        rating_input = RatingInput(text=comment_text)
         messages = self.prompt_manager.get_openai_messages(
             self.prompt_config,
-            json.dumps([{"id": "single", "text": rating_input.text}]),
+            json.dumps([{"id": "single", "text": comment_text}]),
         )
 
-        completion = self.client.beta.chat.completions.parse(
-            model=self.model,
-            messages=messages,
-            response_format=BatchRatingResponse,
-        )
-
-        batch_result = completion.choices[0].message.parsed
-        if not batch_result.ratings:
-            raise ValueError("Model returned no ratings for the comment.")
+        # We wrap the output in BatchRatingResponse to reuse the same structure
+        batch_result = self._get_structured_response(messages, BatchRatingResponse)
 
         first_rating = batch_result.ratings[0]
         return RatingOutput(
@@ -60,16 +79,20 @@ class OpenAIRatingClient:
     def rate_comments_batch(
         self, responses: List[CommentsResponse], chunk_size: int = 100
     ) -> BatchRatingResponse:
-        """Rate Instagram video comments in batches using the versioned prompt."""
+        """Rate Instagram video comments in batches using Anthropic's tool-use API."""
         all_comments = []
         for response in responses:
             all_comments.extend(response.comments)
 
         if not all_comments:
-            return BatchRatingResponse(total_processed=0, ratings=[])
+            return BatchRatingResponse(
+                total_processed=0,
+                avg_sentiment_score=0.0,
+                avg_authenticity_score=0.0,
+                ratings=[],
+            )
 
         lean_payload = [{"id": c.id, "text": c.text} for c in all_comments if c.text]
-
         master_ratings = []
         total_processed_count = 0
 
@@ -77,18 +100,17 @@ class OpenAIRatingClient:
             chunk = lean_payload[i : i + chunk_size]
 
             try:
+                # Prepare messages for Anthropic
                 messages = self.prompt_manager.get_openai_messages(
                     self.prompt_config,
                     json.dumps(chunk),
                 )
 
-                completion = self.client.beta.chat.completions.parse(
-                    model=self.model,
-                    messages=messages,
-                    response_format=BatchRatingResponse,
+                # Use helper to get structured response (Tool Use)
+                chunk_result = self._get_structured_response(
+                    messages, BatchRatingResponse
                 )
 
-                chunk_result = completion.choices[0].message.parsed
                 master_ratings.extend(chunk_result.ratings)
                 total_processed_count += chunk_result.total_processed
 
@@ -100,7 +122,7 @@ class OpenAIRatingClient:
                 print(f"Failed to process chunk starting at index {i}: {e}")
                 raise
 
-        # Get sentiment and authenticity averages
+        # Calculate averages locally
         if total_processed_count > 0:
             sum_sentiment = sum(r.positivity_score for r in master_ratings)
             sum_authenticity = sum(r.authenticity_score for r in master_ratings)
