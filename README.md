@@ -22,6 +22,20 @@ Using sentiment analysis and authenticity scoring, our tool processes engagement
 In modern software development, teams often ship prompt changes "blind," as rigorous prompt validation is a new domain. This leads to silent regressions in model behavior, inconsistent output quality, and a lack of visibility into how small prompt adjustments impact downstream system performance.
 
 This project implements a robust, automated evaluation framework designed to benchmark model efficiency. By establishing a deterministic "Golden Dataset" prompts folder and an automated regression testing pipeline, we ensure that every change to a system prompt is validated against human-verified truth before reaching production.
+
+## Creating The Golden Dataset
+### Uses random comments from these 10 non-profit organizations' instagrams, manually giving them a positivity (agreement) and authenticity rating.
+    - charity: water https://www.charitywater.org/ (@charitywater)
+    - Rescue City https://www.rescuecity.nyc/ (@rescuecity)
+    - Pencils of Promise https://pencilsofpromise.org/ (@pencilsofpromise)
+    - Gigis Playhouse https://gigisplayhouse.org/ (@gigisplayhouse)
+    - Minnesota Zoo https://mnzoo.org/ (@mnzoo)
+    - Feed My Starving Children https://www.fmsc.org/ (@fmsc_org)
+    - United Way Dane County https://www.unitedwaydanecounty.org/ (unitedwaydaneco)
+    - Cure International Children's Hospital https://cure.org/ (@cureintl)
+    - She Recovers https://sherecovers.org/ (@she_recovers)
+    - Wounded Warriors Project https://www.woundedwarriorproject.org/ (@wwp)
+
 ## Getting Started
 To run this project locally, ensure you have your API keys configured in your environment.
 
@@ -62,6 +76,8 @@ npm run dev
 We believe in transparent data usage. This tool is designed to process public data only and does not store user-identifiable information. We encourage all users to use these insights to promote inclusivity and positive community growth.
 
 ---
+
+
 
 ### Legal Statement
 The analysis provided by this tool is for informational purposes only. Commently does not guarantee the accuracy, completeness, or reliability of the sentiment and authenticity scores generated. By using this service, you agree to comply with the platform's terms of service from which data is sourced. The developers assume no liability for actions taken based on these insights, and all usage of this tool must align with applicable local laws and platform data policies.

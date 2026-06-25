@@ -2,22 +2,214 @@
   "version": "1.0.0",
   "benchmarks": [
     {
-      "id": "bench_001",
-      "comment": "Omg love this dress so much 😍 where did you get it?",
+      "id": "batch_001",
+      "comment": "{redacted mentions} looks like we got clipped 😎",
+      "expected_positivity": 8,
+      "expected_authenticity_score": 10,
+      "reasoning": "mentioning with positive emoji"
+    },
+    {
+      "id": "batch_002",
+      "comment": "Chewy is a better company choice",
+      "expected_positivity": 3,
+      "expected_authenticity_score": 5,
+      "reasoning": "Dissatisfaction with the branch mentioned, simple reply of a better brand personally."
+    },
+    {
+      "id": "batch_003",
+      "comment": "No one in the world deserves to be seen and celebrated as much as you!! 😭 ...its no surprise that YOU have guided 1.5 million (and growing!!!!!) women through their own healing and recovery journeys after so bravely and beautifully sharing your story and opening your heart to the world!! You're beyond inspiring and I love you!!!!!",
       "expected_positivity": 10,
-      "expected_authenticity_score": 1
+      "expected_authenticity_score": 10,
+      "reasoning": "Deeply connects with source material and explains the many ways the woman in the video has impacted her audience in a positive way."
     },
     {
-      "id": "bench_002",
-      "comment": "This fabric is okay, but the sizing is way off.",
-      "expected_positivity": 4,
-      "expected_authenticity_score": 1
+      "id": "batch_004",
+      "comment": "You should go national !!",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 10,
+      "reasoning": "Expresses that the organization should go national with enthusiasm."
     },
     {
-      "id": "bench_003",
-      "comment": "PROMOTE IT ON @SCAM_PAGE_123 FOR FAST GROWTH!!!",
+      "id": "batch_005",
+      "comment": "My old living room. This was such a sacred space and opportunity for me when it first began and remains so to this day. Soul nourishing.",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 10,
+      "reasoning": "Talks about how sacred of space the media in the photo represents. Soul Nourishing."
+    },
+    {
+      "id": "batch_006",
+      "comment": "Cuddles puddles hallellujah 😇",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 8,
+      "reasoning": "Unique positive sentiment"
+    },
+    {
+      "id": "batch_007",
+      "comment": "{Redacted personal information, name and financial situation} I'm trying to start a small business to regain stability in life. I kindly ask for $1000 (TRC20) to help me start over. {Redacted Wallet Details}",
       "expected_positivity": 1,
-      "expected_authenticity_score": 10
+      "expected_authenticity_score": 1,
+      "reasoning": "Non-related to the post at hand, asking for donations in sketchy manners. Most likely a scammer."
+    },
+    {
+      "id": "batch_008",
+      "comment": "Every child deserves a safe place to learn and grow 💛 Thank you for making that possible.",
+      "expected_positivity": 9,
+      "expected_authenticity_score": 8,
+      "reasoning": "Extrememly positive sentiment"
+    },
+    {
+      "id": "batch_009",
+      "comment": "🙌",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 2,
+      "reasoning": "positive emoji, 0 substance"
+    },
+    {
+      "id": "batch_010",
+      "comment": "BEST organization EVER!!! Share if you love them!!! 🧩💙🧩💙 Donate now!!! Link in bio!!!",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 1,
+      "reasoning": "Overly promotional with aggressive calls to action and link placement. High energy but clearly inauthentic — generic spam pattern."
+    },
+    {
+      "id": "batch_011",
+      "comment": "Happy Fathers day!!",
+      "expected_positivity": 9,
+      "expected_authenticity_score": 10,
+      "reasoning": "Positive engagement with the post"
+    },
+    {
+      "id": "batch_012",
+      "comment": "Спасибо за то что вы делаете. Это вкусно, это помогает людям. С любовью из Украины",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 10,
+      "reasoning": "Positive message from Ukraine."
+    },
+    {
+      "id": "batch_013",
+      "comment": "{redacted} claims to help but when we reached out they said there was a year-long waitlist. Not the lifeline they advertise.",
+      "expected_positivity": 2,
+      "expected_authenticity_score": 10,
+      "reasoning": "Negative personal experience calling out misleading advertising. Specific, credible complaint with strong authentic voice."
+    },
+    {
+      "id": "batch_014",
+      "comment": "Some of the volunteers are amazing, others just show up for the photo op for their resume.",
+      "expected_positivity": 4,
+      "expected_authenticity_score": 10,
+      "reasoning": "Mediocre review."
+    },
+    {
+      "id": "batch_015",
+      "comment": "A bright light to celebrate❤️",
+      "expected_positivity": 8,
+      "expected_authenticity_score": 10,
+      "reasoning": "A metaphor for the positive impact of the video."
+    },
+    {
+      "id": "batch_016",
+      "comment": "Volunteered for the first time today with the infants and it was a truly wonderful, joyful way to spend an hour and I look forward to getting to know them and their parents better. 😍",
+      "expected_positivity": 1,
+      "expected_authenticity_score": 10,
+      "reasoning": "Deeply personal and specific volunteering story. Very authentic tone but focuses on individual experience rather than directly supporting the organization's post."
+    },
+    {
+      "id": "batch_017",
+      "comment": "Seeing effort to bring water to those who need it reminds me of the tragedy of {Readacted}. He was killed thirsty while standing for justice, and even his children were denied water. His story teaches that access to water is a basic human right and that no child, anywhere, should ever suffer from thirst.",
+      "expected_positivity": 7,
+      "expected_authenticity_score": 10,
+      "reasoning": "Positivity means agreement with the sentiment of the original post, which this one does. However, it is a deeply personal loss of life that is inheritly more negative."
+    },
+    {
+      "id": "batch_018",
+      "comment": "💛 Thank you so much for the update!",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 7,
+      "reasoning": "Positive sentiment, glad to hear update."
+    },
+    {
+      "id": "batch_019",
+      "comment": "Behavior leash is so funny",
+      "expected_positivity": 9,
+      "expected_authenticity_score": 7,
+      "reasoning": "Expresses joy in the content, relatively standard comment"
+    },
+    {
+      "id": "batch_020",
+      "comment": "Oh my goodness... I love Sheila's courage and faith. It is really encouraging. Such stories keep us strong and hopeful",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 10,
+      "reasoning": "Enocuraged by the media and resonates deeply."
+    },
+    {
+      "id": "batch_021",
+      "comment": "❤️❤️❤️",
+      "expected_positivity": 9,
+      "expected_authenticity_score": 3,
+      "reasoning": "Positive emojis, but no substance and interaction in the comment."
+    },
+    {
+      "id": "batch_022",
+      "comment": "The real conversation should be with the leaders of this world who just two years ago were talking about a cleaner environment and access to water in certain countires and now that BIG Tech and Data Centers are making them millions they've all stopped talking. Where is Obama and Bush now?",
+      "expected_positivity": 2,
+      "expected_authenticity_score": 7,
+      "reasoning": "Negative ancecdote surrounding Big Tech Billionaires. Mostly authentic as its sharing a deep sentiment. "
+    },
+    {
+      "id": "batch_023",
+      "comment": "This is why we do what we do. Every well we build in Chad transforms an entire community. Love seeing the global movement for clean water grow! 🙌",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 10,
+      "reasoning": "Very positive deep personal connection. Strong sense of pride in the organization."
+    },
+    {
+      "id": "batch_024",
+      "comment": "Such a fun event! Thanks for having me✍️",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 10,
+      "reasoning": "Expresses enjoyment of the event in the post. Also leaves the impression of being in person"
+    },
+    {
+      "id": "batch_025",
+      "comment": "😡",
+      "expected_positivity": 1,
+      "expected_authenticity_score": 4,
+      "reasoning": "Simple, angry emoji."
+    },
+    {
+      "id": "batch_026",
+      "comment": "thank you for speaking out on this! I am walking with a 20 litre jerry can once a week every week until I raise £6000 for a borehole to be installed in Uganda because I know the difference clean water can make! 🩵💧",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 10,
+      "reasoning": "Enthusiastic deep personal connection praising organizations actions. Agreeing with post."
+    },
+    {
+      "id": "batch_027",
+      "comment": "What beautiful pics!",
+      "expected_positivity": 8,
+      "expected_authenticity_score": 10,
+      "reasoning": "Comments on how beautiful the content is."
+    },
+    {
+      "id": "batch_028",
+      "comment": "I wish there was one in Austin",
+      "expected_positivity": 8,
+      "expected_authenticity_score": 10,
+      "reasoning": "Expresses enthusiasm to go where this person is located"
+    },
+    {
+      "id": "batch_029",
+      "comment": "This is powerful. When teachers are supported, everything changes fo students--love seeing this kind of impact.",
+      "expected_positivity": 10,
+      "expected_authenticity_score": 10,
+      "reasoning": "Expresses love for the content and teachers impact"
+    },
+    {
+      "id": "batch_030",
+      "comment": "I appreciate the free meals but the quality has gone downhill lately. Still grateful though.",
+      "expected_positivity": 6,
+      "expected_authenticity_score": 10,
+      "reasoning": "Appreciating the org but notes the quality lately."
     }
   ]
 }
