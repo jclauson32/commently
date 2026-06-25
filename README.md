@@ -21,7 +21,7 @@ Using sentiment analysis and authenticity scoring, our tool processes engagement
 
 In modern software development, teams often ship prompt changes "blind," as rigorous prompt validation is a new domain. This leads to silent regressions in model behavior, inconsistent output quality, and a lack of visibility into how small prompt adjustments impact downstream system performance.
 
-This project implements a robust, automated evaluation framework designed to benchmark model efficiency. By establishing a deterministic "Golden Dataset" prompts folder and an automated regression testing pipeline, we ensure that every change to a system prompt is validated against human-verified truth before reaching production.
+This project implements a robust, automated evaluation framework designed to benchmark model efficiency. By establishing a deterministic "Golden Dataset" (backend/test/benchmark_data.json) folder and an automated regression testing pipeline, we ensure that every change to a system prompt is validated against human-verified truth before reaching production.
 
 ## Creating The Golden Dataset
 ### Uses random comments from these 10 non-profit organizations' instagrams, manually giving them a positivity (agreement) and authenticity rating.
