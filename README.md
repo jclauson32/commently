@@ -24,7 +24,7 @@ In modern software development, teams often ship prompt changes "blind," as rigo
 This project implements a robust, automated evaluation framework designed to benchmark model efficiency. By establishing a deterministic "Golden Dataset" (backend/test/benchmark_data.json) folder and an automated regression testing pipeline, we ensure that every change to a system prompt is validated against human-verified truth before reaching production.
 
 ## Creating The Golden Dataset
-### Uses random comments from these 10 non-profit organizations' instagrams, manually giving them a positivity (agreement) and authenticity rating.
+### Uses comments from these 10 non-profit organizations' instagrams, grading them manually by giving them a positivity (agreement) and authenticity rating.
     - charity: water https://www.charitywater.org/ (@charitywater)
     - Rescue City https://www.rescuecity.nyc/ (@rescuecity)
     - Pencils of Promise https://pencilsofpromise.org/ (@pencilsofpromise)
