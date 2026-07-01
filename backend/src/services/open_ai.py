@@ -18,7 +18,7 @@ class OpenAIRatingClient:
     """Client for batch-processing Instagram video comment ratings via OpenAI."""
 
     PROMPT_NAME = "instagram_comment_rater"
-    PROMPT_VERSION = "v1"
+    PROMPT_VERSION = "v2"
 
     def __init__(
         self, api_key: str | None = None, prompt_config: PromptConfig | None = None
