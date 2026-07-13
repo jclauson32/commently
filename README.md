@@ -50,7 +50,7 @@ To run this project locally, ensure you have your API keys configured in your en
    ```
    git clone https://github.com/jclauson32/commently.git
 
-   cd backend && pip install -r requirements.txt
+   cd backend && pip install -r src/requirements.txt
    ```
 ### Install frontend dependencies:
     cd frontend && npm install
@@ -71,6 +71,15 @@ npm install
 
 npm run dev
 
+### Roadmap and Future features
+
+    - Use the official Instagram API (We are currently using the ScrapeCreators API because Instagrams official API only allows looking at a maximum of 50 messages.)
+    - Expand this to be used on any Social Media Site (Tiktok, Facebook, Linkedin, etc.)
+    - See an overview of a profile and Overall Positivity / Authenticity for every video on a profile.
+    - Publicly accessible URL, not just local hosted.
+    - Create users accounts so users can see saved videos/profiles and enter in their own respective Anthropic / OpenAI API keys.
+    - Expand the metrics list.
+    - Create a marketing suite providing organizations and individuals with Metrics over time. 
 ### Privacy & Ethics
 
 We believe in transparent data usage. This tool is designed to process public data only and does not store user-identifiable information. We encourage all users to use these insights to promote inclusivity and positive community growth.
