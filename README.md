@@ -65,8 +65,11 @@ To run this project locally, ensure you have your API keys configured in your en
 # Run the development environment:
 
 ## Backend
-uvicorn main:app --reload
+
+- Inside backend directory
+uvicorn src.main:app --reload
 ## Frontend
+- Inside frontend directory
 npm install
 
 npm run dev
