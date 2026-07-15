@@ -3,6 +3,7 @@
 
 See how a piece of media's comments are rated by an LLM! Commently will rate a post's comments and give a comment by comment breakdown of each's sentiment and authenticity 😀
 
+[Commently Explained](https://www.loom.com/share/883c745fe45e47008afdfee0e9431ece)
 ---
 
 ## The Mission
